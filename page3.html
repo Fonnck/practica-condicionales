@@ -13,21 +13,17 @@
     />
   </head>
   <body>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/page2.html" aria-current="page">Other page</a>
-    </nav>
     <main>
       <div class="mt-3 d-flex justify-content-between flex-row">
-        <h1>Problema 1</h1>
+        <h1>Problema 2</h1>
         <a href="/">
           <button class="btn btn-secondary">Ir al Home</button>
         </a>
       </div>
       <div class="mt-5 border p-3">
         <b
-          >Un programa que retorne su signo zodiacal, predicción y número de suerte de acuerdo 
-          a su fecha de nacimiento</b
+          >Un programa que retorne su signo zodiacal, predicción y número de
+          suerte de acuerdo a su fecha de nacimiento</b
         >
       </div>
       <div class="row mt-5">
@@ -40,14 +36,23 @@
             type="date"
             id="birthdate"
             name="birthdate"
-            onchange="getAge()"
+            onchange="horoscopo()"
           />
         </div>
         <div
-          class="mt-3 p-2 col-12 border d-flex justify-content-between flex-column"
+          class="
+            mt-3
+            p-2
+            col-12
+            card
+            d-flex
+            justify-content-between
+            flex-column
+          "
         >
-          <b>Sus datos son:</b>
-          <h1 id="age"></h1>
+          <h1 id="signo"></h1>
+          <h6 id="prediccion"></h1>
+          <h1 id="num"></h1>
         </div>
       </div>
     </main>
@@ -55,19 +60,42 @@
     <script>
       var dateSelected = document.getElementById('birthdate');
 
-      function verFecha() {
+      function setResult(signo, pre) {
         console.log(dateSelected.value);
+        document.getElementById('signo').innerHTML = signo;
+        document.getElementById('prediccion').innerHTML = pre;
+        document.getElementById('num').innerHTML = 'Número de la suerte: ' + Math.floor(Math.random()*(100-1+1)+1);
       }
 
-      function getAge() {
-        var today = new Date();
-        var birthDate = new Date(dateSelected.value);
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-        }
-        document.getElementById('age').innerHTML = age;
+      function horoscopo() {
+        var fecha = dateSelected.value.split("-");
+        var dia = fecha[2];
+        var mes = fecha[1];
+        
+        if((dia>=21&&mes==3)||(dia<=20&&mes==4))
+        setResult('Aries', 'Es necesario bajar un poco el ritmo y pensar en los planes a futuro. Es importante usar las dotes sociales para alcanzar en conjunto los objetivos propuestos, sobre todo en el ámbito laboral. En las finanzas todo estará estable, pero hacia finales de mes es importante no derrochar. En cuanto al amor, las cosas avanzarán por buen camino y para ello es necesario hacer uso del diálogo.');
+    if((dia>=24&&mes==9)||(dia<=23&&mes==10))
+        setResult('Libra', 'El estado de ánimo será crucial para llevar también una salud óptima. La riqueza llegará gracias a la vitalidad con la que se vivirán las cosas. En el amor, todo puede comenzar bien en la primera mitad del mes, después puede costar un poco más alcanzarlo o mantenerlo estable. Para quienes están solteros, llegó el momento de cerrar heridas.');
+    if((dia>=21&&mes==4)||(dia<=21&&mes==5))
+        setResult('Tauro', 'Es posible que a principios de mes haya un bajón en el estado de ánimo. Sin embargo, este se irá recuperando con el pasar de los días. Para ello, es importante descansar y no dejarse inquietar por temas poco trascendentales. Habrá muchas posibilidades para entrar en una relación amorosa seria, depende de cada persona darle paso. En cuanto a las finanzas, los astros darán el empujón que se necesita para iniciar proyectos que den fruto.');
+    if((dia>=24&&mes==10)||(dia<=22&&mes==11))
+        setResult('Escorpio', 'A comienzos de septiembre es importante tener precaución y prestar atención a los asuntos de la salud. Se aconseja una alimentación saludable, aprovechar el período de descanso y realizar ejercicio. La vida familiar será fundamental para tomar las decisiones que se vienen a futuro. Las finanzas irán bien, pero hay que mantener controlados los gastos. En el amor, se vivirán momentos de pasión.');
+    if((dia>=22&&mes==5)||(dia<=21&&mes==6))
+        setResult('Géminis', 'Los nacidos bajo este signo tendrán un mes próspero. Llegarán nuevas oportunidades, pero no hay que correr para tomar la decisión, pues las finanzas marcharán perfectamente. En el amor, las cosas también mejorarán. Quienes están en pareja notarán armonía en la relación y para los solteros habrá oportunidades de encontrar la pareja ideal.');
+    if((dia>=23&&mes==11)||(dia<=21&&mes==12))
+        setResult('Sagitario', 'Las finanzas empezarán a mejorar notablemente. Incluso, podría llegar un poco de dinero extra para comprar algo que siempre se ha querido. Para quienes están en una relación amorosa tendrán pequeñas discusiones que se resolverán sin problema, y para los solteros, tendrán un buen momento a partir del 10 de septiembre.');
+    if((dia>=21&&mes==6)||(dia<=23&&mes==7))
+        setResult('Cáncer', 'Habrá un período de prosperidad fuerte durante este mes que hay que aprovechar. El dinero crecerá al igual que las relaciones sociales y la armonía en familia. Los Virgo tendrán algunas dificultades en el amor y no sabrán como manejar algunas emociones. La actitud podría ser fundamental para mantener una relación o entrar en una nueva.');
+    if((dia>=22&&mes==12)||(dia<=20&&mes==1))
+        setResult('Capricornio', 'Es necesario hacer una pausa en la montaña de obligaciones que se puedan tener para no perjudicar aspectos de la salud. En el amor, también hay que asumir las cosas con calma y no tomar decisiones precipitadas. Quienes están solteros tendrán algunas citas, pero es posible que no se encuentre el momento de avanzar con ellas.');
+    if((dia>=24&&mes==7)||(dia<=23&&mes==8))
+        setResult('Leo', 'Aunque llegarán grandes sentimientos de independencia durante este mes, la familia será un pilar fundamental en la estabilidad emocional. Las finanzas mejorarán y un nuevo empleo podría estar a la vuelta de la esquina. En el amor, hay que caminar con paciencia, tanto para quienes estén en una relación, como para los solteros.');
+    if((dia>=21&&mes==1)||(dia<=19&&mes==2))
+        setResult('Acuario', 'Los primeros días del mes serán agobiantes para algunos Capricornio. Sin embargo, las finanzas marcharán a la perfección y la familia entrará a ser un apoyo emocional. En cuanto al amor, todo marchará igual. Para los solteros, los encuentros románticos se disminuirán, pero a finales de mes esto podría cambiar.');
+    if((dia>=24&&mes==8)||(dia<=23&&mes==9))
+        setResult('Virgo', 'Es posible que algunos proyectos comiencen a ponerse un poco lentos, por lo que hay que centrarse en las buenas energías y en los amigos que han demostrado estar en las buenas y en las malas. Será un buen mes para las finanzas, pero hay que controlar los gastos. En el amor, no hay que tomar decisiones importantes. Hay que llevar todo con calma y asegurarse de que sea la persona indicada.');
+    if((dia>=20&&mes==2)||(dia<=20&&mes==3))
+        setResult('Piscis', 'La energía está un poco baja, por lo que hay que cuidar que la salud no se vea afectada. Podría haber inconvenientes en la llegada de los ingresos, por lo que la situación económica puede complicarse. Por el contrario, en el amor todo irá de maravilla, lo que hay que aprovechar para gozar de buenos momentos.');
       }
     </script>
   </body>
