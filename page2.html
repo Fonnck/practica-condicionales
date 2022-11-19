@@ -21,10 +21,7 @@
         </a>
       </div>
       <div class="mt-5 border p-3">
-        <b
-          >Un programa al cual se le ingrese la fecha de nacimiento y retorne la
-          edad</b
-        >
+        <b>Un programa que me indique si un individuo es mayor de edad</b>
       </div>
       <div class="row mt-5">
         <div class="col-8">
@@ -42,7 +39,7 @@
         <div
           class="p-2 col-4 border d-flex justify-content-between flex-column"
         >
-          <b>Su edad es:</b>
+          <b>¿Es mayor de edad?</b>
           <h1 id="age"></h1>
         </div>
       </div>
@@ -63,7 +60,12 @@
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
           age--;
         }
-        document.getElementById('age').innerHTML = age;
+
+        if (age >= 18) {
+          document.getElementById('age').innerHTML = 'SI';
+        } else {
+          document.getElementById('age').innerHTML = 'NO';
+        }
       }
     </script>
   </body>

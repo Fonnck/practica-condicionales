@@ -22,21 +22,39 @@
       </div>
       <div class="mt-5 border p-3">
         <b
-          >Un programa que capture una cadena de texto y me cuente cuántas
-          vocales hay en la cadena</b
+          >Un programa que me pregunte la operación que voy a realizar entre dos
+          números y me retorne el resultado</b
         >
       </div>
       <div class="row mt-5">
-        <div class="col-8">
+        <div class="col-4">
           <label class="form-control-label" for="cadena"
-            >Introduzca cadena</label
+            >Introduzca número</label
           >
           <input
             class="form-control mt-2"
-            type="text"
+            type="number"
             id="cadena"
             name="cadena"
-            onchange=""
+          />
+        </div>
+        <div class="col-4 mt-5">
+          <select class="form-select mt-2" name="operador" id="operador">
+            <option value="suma">+</option>
+            <option value="resta">-</option>
+            <option value="multiplicar">x</option>
+            <option value="dividir">/</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label class="form-control-label" for="cadena2"
+            >Introduzca número</label
+          >
+          <input
+            class="form-control mt-2"
+            type="number"
+            id="cadena2"
+            name="cadena2"
           />
         </div>
         <div class="col-4 mt-4">
@@ -62,22 +80,26 @@
     <script type="module" src="script.js"></script>
     <script>
       var inputValue = document.getElementById('cadena');
+      var inputValue2 = document.getElementById('cadena2');
+      var operador = document.getElementById('operador');
 
       function setValue() {
         console.log(inputValue.value);
-        document.getElementById('result').innerHTML = contarVocales();
+        document.getElementById('result').innerHTML = operacion();
       }
 
-      function contarVocales() {
-        const cadena = inputValue.value;
-        const vocales = 'aáeéiíoóuú';
-        let cantidadVocales = 0;
-        for (const letra of cadena) {
-          if (vocales.includes(letra.toLowerCase())) {
-            cantidadVocales++;
-          }
+      function operacion() {
+        const x = parseInt(inputValue.value);
+        const y = parseInt(inputValue2.value);
+        if (operador.value == 'suma') {
+          return x + y;
+        } else if (operador.value == 'resta') {
+          return x - y;
+        } else if (operador.value == 'multiplicar') {
+          return x * y;
+        } else {
+          return x / y;
         }
-        return cantidadVocales + ' Vocales';
       }
     </script>
   </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Problema 2</title>
+    <title>Problema 3</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="styles.css" />
@@ -15,71 +15,83 @@
   <body>
     <main>
       <div class="mt-3 d-flex justify-content-between flex-row">
-        <h1>Problema 3</h1>
+        <h1>Problema 2</h1>
         <a href="/">
           <button class="btn btn-secondary">Ir al Home</button>
         </a>
       </div>
       <div class="mt-5 border p-3">
         <b
-          >Un programa que determine si un valor ingresado es primo o no es
-          primo</b
+          >Un programa que le ingrese mi fecha de nacimiento y me retorne mi
+          isgno zodiacal</b
         >
       </div>
       <div class="row mt-5">
-        <div class="col-8">
-          <label class="form-control-label" for="primo"
-            >Introduzca valor númerico</label
+        <div class="col-12">
+          <label class="form-control-label" for="birthdate"
+            >Seleccione su fecha de nacimiento</label
           >
           <input
             class="form-control mt-2"
-            type="number"
-            id="primo"
-            name="primo"
-            onchange=""
+            type="date"
+            id="birthdate"
+            name="birthdate"
+            onchange="horoscopo()"
           />
-        </div>
-        <div class="col-4 mt-4">
-          <button class="btn btn-secondary mt-2" onclick="setValue()">
-            Calcular
-          </button>
         </div>
         <div
           class="
             mt-3
             p-2
             col-12
-            border
+            card
             d-flex
             justify-content-between
             flex-column
           "
         >
-          <h1 id="result"></h1>
+          <h1 id="signo"></h1>
         </div>
       </div>
     </main>
     <script type="module" src="script.js"></script>
     <script>
-      var inputValue = document.getElementById('primo');
+      var dateSelected = document.getElementById('birthdate');
 
-      function setValue() {
-        console.log(inputValue.value);
-        console.log(esPrimo());
-        document.getElementById('result').innerHTML = esPrimo();
+      function setResult(signo, pre) {
+        console.log(dateSelected.value);
+        document.getElementById('signo').innerHTML = signo;
       }
 
-      function esPrimo() {
-        const numero = inputValue.value;
-        if (numero == 0 || numero == 1 || numero == 4) {
-          return 'NO es Primo';
-        } else {
-          for (let x = 2; x < numero / 2; x++) {
-            if (numero % x == 0) return 'NO es Primo';
-          }
-        }
-        // Si no se pudo dividir por ninguno de los de arriba, sí es primo
-        return 'ES Primo';
+      function horoscopo() {
+        var fecha = dateSelected.value.split('-');
+        var dia = fecha[2];
+        var mes = fecha[1];
+
+        if ((dia >= 21 && mes == 3) || (dia <= 20 && mes == 4))
+          setResult('Aries');
+        if ((dia >= 24 && mes == 9) || (dia <= 23 && mes == 10))
+          setResult('Libra');
+        if ((dia >= 21 && mes == 4) || (dia <= 21 && mes == 5))
+          setResult('Tauro');
+        if ((dia >= 24 && mes == 10) || (dia <= 22 && mes == 11))
+          setResult('Escorpio');
+        if ((dia >= 22 && mes == 5) || (dia <= 21 && mes == 6))
+          setResult('Géminis');
+        if ((dia >= 23 && mes == 11) || (dia <= 21 && mes == 12))
+          setResult('Sagitario');
+        if ((dia >= 21 && mes == 6) || (dia <= 23 && mes == 7))
+          setResult('Cáncer');
+        if ((dia >= 22 && mes == 12) || (dia <= 20 && mes == 1))
+          setResult('Capricornio');
+        if ((dia >= 24 && mes == 7) || (dia <= 23 && mes == 8))
+          setResult('Leo');
+        if ((dia >= 21 && mes == 1) || (dia <= 19 && mes == 2))
+          setResult('Acuario');
+        if ((dia >= 24 && mes == 8) || (dia <= 23 && mes == 9))
+          setResult('Virgo');
+        if ((dia >= 20 && mes == 2) || (dia <= 20 && mes == 3))
+          setResult('Piscis');
       }
     </script>
   </body>
